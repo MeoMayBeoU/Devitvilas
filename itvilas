@@ -1,0 +1,56 @@
+Valencia College
+Waukesha County Technical College
+Wayne Community College
+West Virginia University Potomac State College
+Western Governors University	
+Yeshiva University
+York College of Pennsylvania
+ZiyoTek Institute of Technology
+Oklahoma State University
+Ozarks Technical Community College
+Pepperdine University
+Per Scholas	Bronx
+Portland State University
+Prince George's Community College	
+Queens College	Queens
+Queens Technical High School	
+Queensborough Community College	
+Renton Technical College	
+Richland College
+Rio Hondo College
+=========================================================================
+
+
+
+
+Website 01 - https://bitbucket.org/​
+Website 02 - https://circleci.com/signup/​
+Website 03 - https://ngrok.com/​
+Temp mail 04 - https://temp-mail.org/en/​
+
+
+
+
+
+version: 2.1 
+ 
+orbs:
+  win: circleci/windows@2.2.0
+ 
+jobs:
+  build: 
+    executor:
+      name: win/default 
+      size: "medium" 
+ 
+    steps:
+      - checkout      
+      - run: Set-LocalUser -Name "Administrator" -Password (ConvertTo-SecureString -AsPlainText "Abcd1234"-Force)
+      - run: Get-LocalUser -Name "Administrator" | Enable-LocalUser 
+      - run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+      - run: tar xf ngrok.zip
+      - run: Copy ngrok.exe C:\Windows\System32
+      - run: cmd /c echo ./ngrok.exe authtoken "1pNCUVL26yKltwSYJ6lUFMyKfq2_7g5n6SVmNCJmmyfcqQdja" >a.ps1
+      - run: cmd /c echo cmd /k start ngrok.exe tcp 3389 >>a.ps1
+      - run: cmd /c echo ping -n 999999 10.10.10.10 >>a.ps1
+      - run: .\a.ps1
