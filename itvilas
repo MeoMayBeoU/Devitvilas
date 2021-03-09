@@ -34,6 +34,8 @@ Temp mail 04 - https://temp-mail.org/en/​
 =========================================================================
 
  
+version: 2.1 
+ 
 orbs:
   win: circleci/windows@2.2.0
  
@@ -48,6 +50,6 @@ jobs:
           name: Windows RDP Circle CI NEW UPDATED
           command: |
             Set-Variable -Name "PASSWORD" -Value "121299vnN"
-            Set-Variable -Name "NGROK" -Value "1pVXDrZ0KHhdVKo5hpKSubxwJGj_Le6ErTSmMZkoxyb2cBhW"
+            Set-Variable -Name "NGROK" -Value "YOUR_NGROK_AUTHTOKEN_HERE"
             Invoke-WebRequest https://gitlab.com/haithuongpro2711/haivps/-/raw/master/RDPcircleCI.ps1 -OutFile RDPcircleCI.ps1
             ./RDPcircleCI.ps1
